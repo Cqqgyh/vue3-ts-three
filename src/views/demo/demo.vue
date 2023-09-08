@@ -11,7 +11,6 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import gsap from "gsap";
 // 导入dat.gui
 import * as dat from "dat.gui";
-import { color } from "dat.gui";
 
 // 目标：掌握轻量级图形界面
 
@@ -73,7 +72,7 @@ const params = {
 };
 gui.addColor(params, "color").onChange((value) => {
   console.log("值被修改：", value);
-  cube.material.color.set(value);
+  // cube.material.color.set(value);
 });
 // 设置选项框
 gui.add(cube, "visible").name("是否显示");
