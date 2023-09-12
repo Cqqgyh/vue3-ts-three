@@ -74,6 +74,18 @@ gui
     .onFinishChange((value) => {
       console.log("完全停下来:", value);
     });
+gui
+    .add(cube.position, "z")
+    .min(0)
+    .max(5)
+    .step(0.01)
+    .name("移动Z轴")
+    .onChange((value) => {
+      console.log("值被修改：", value);
+    })
+    .onFinishChange((value) => {
+      console.log("完全停下来:", value);
+    });
 //   修改物体的颜色
 const params = {
   color: "#ffff00",
