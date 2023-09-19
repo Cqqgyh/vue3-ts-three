@@ -6,18 +6,21 @@
         <h3>THREE.BoxGeometry</h3>
       </div>
     </div>
+    <div class="page-space"></div>
     <div class="page">
       <div class="page-title">
         <h1>Cylinder</h1>
         <h3>THREE.CylinderGeometry</h3>
       </div>
     </div>
+    <div class="page-space"></div>
     <div class="page">
       <div class="page-title">
         <h1>Dodecahedron</h1>
         <h3>THREE.DodecahedronGeometry</h3>
       </div>
     </div>
+    <div class="page-space"></div>
   </div>
 </template>
 <script setup lang="ts">
@@ -32,6 +35,7 @@ import * as dat from 'dat.gui'
 //#region <创建场景>
 // 创建场景
 const scene = new THREE.Scene()
+// scene.background = new THREE.Color(0x000000)
 //#endregion
 //#region <灯光>
 // 创建灯光
@@ -47,7 +51,7 @@ const camera = new THREE.PerspectiveCamera(
   75,
   window.innerWidth / window.innerHeight,
   0.1,
-  50,
+  5000,
 )
 // 设置相机位置
 // camera.position.set(0, 0, 30)
@@ -121,6 +125,20 @@ let { meshArr: dodecahedronrArr, meshGroup: dodecahedronrGroup } = createMesh(
 )
 let meshArr = [cubeArr, cylinderArr, dodecahedronrArr]
 let meshGroup = [cubeGroup, cylinderGroup, dodecahedronrGroup]
+//#endregion
+//#region <物体动画>
+let meshAnimation = {}
+meshGroup.forEach((item) => {
+  gsap.to(item.rotation, {
+    x: 0,
+    y: Math.PI,
+    duration: 5,
+    ease: 'linear',
+    // yoyo: true,
+    repeat: -1,
+  })
+})
+
 //#endregion
 //#endregion
 //#region <平面>
@@ -314,7 +332,9 @@ function eventListrenderHandler(element: HTMLElement) {
     )
     meshGroup.forEach((item) => {
       gsap.to(item.position, {
+        x: 0,
         y: meshTranslateY,
+        z: 0,
         duration: 0.5,
       })
     })
@@ -329,13 +349,6 @@ onMounted(() => {
   pageContainer?.appendChild(renderer.domElement)
   eventListrenderHandler(pageContainer)
   render()
-  gsap.to(meshGroup[0].rotation, {
-    x: 2 * Math.PI,
-    y: Math.PI,
-    duration: 5,
-    yoyo: true,
-    repeat: -1,
-  })
 })
 </script>
 <style lang="scss">
@@ -358,17 +371,21 @@ canvas {
   top: 0;
 }
 .page {
-  height: 100vh;
+  height: 30vh;
   display: flex;
   color: #fff;
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
-  //position: relative;
-  //z-index: 10;
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+}
+.page-space {
+  height: 70vh;
 }
 .page-title {
-  position: absolute;
+  position: relative;
   z-index: 999;
   h1 {
     margin: 20px 0;
