@@ -26,16 +26,28 @@
 import { RouteRecordRaw } from 'vue-router'
 const LAYOUT = () => import('@/layouts/index.vue')
 export const devRoutes: RouteRecordRaw[] = [
-    {
-        name: 'demo',
-        path: '/demo',
-        component: () => import('@/views/demo/demo.vue'),
-        meta: {
-            title: 'demo',
-            icon: 'HomeFilled',
-            /** 菜单是否全屏 (示例：数据大屏页面) */
-            isFull: true,
-        },
-        children: [],
+  {
+    name: 'demo',
+    path: '/demo',
+    component: () => import('@/views/demo/demo.vue'),
+    meta: {
+      title: 'demo',
+      icon: 'HomeFilled',
+      /** 菜单是否全屏 (示例：数据大屏页面) */
+      isFull: true,
     },
+    children: [],
+  },
+  {
+    name: 'fullScroll',
+    path: '/fullScroll',
+    component: () => import('@/views/fullScroll/fullScroll.vue'),
+    meta: {
+      title: 'fullScroll',
+      icon: 'HomeFilled',
+      /** 菜单是否全屏 (示例：数据大屏页面) */
+      isFull: true,
+    },
+    children: [],
+  },
 ]
