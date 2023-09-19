@@ -51,7 +51,7 @@ const camera = new THREE.PerspectiveCamera(
   75,
   window.innerWidth / window.innerHeight,
   0.1,
-  5000,
+  70,
 )
 // 设置相机位置
 // camera.position.set(0, 0, 30)
@@ -127,7 +127,6 @@ let meshArr = [cubeArr, cylinderArr, dodecahedronrArr]
 let meshGroup = [cubeGroup, cylinderGroup, dodecahedronrGroup]
 //#endregion
 //#region <物体动画>
-let meshAnimation = {}
 meshGroup.forEach((item) => {
   gsap.to(item.rotation, {
     x: 0,
@@ -143,23 +142,23 @@ meshGroup.forEach((item) => {
 //#endregion
 //#region <平面>
 // 在y:-100的位置添加一个平面遮挡
-function creatPlame(
-  translate: { x?: number; y?: number; z?: number } = {
-    x: 0,
-    y: 0,
-    z: 0,
-  },
-) {
-  const planeGeometry = new THREE.PlaneGeometry(1000, 1000)
-  const planeMaterial = new THREE.MeshBasicMaterial({
-    color: '#88CE02',
-    side: THREE.DoubleSide,
-  })
-  const plane = new THREE.Mesh(planeGeometry, planeMaterial)
-  plane.rotation.x = -Math.PI / 2
-  plane.position.set(translate.x || 0, translate.y || 0, translate.z || 0)
-  scene.add(plane)
-}
+// function creatPlame(
+//   translate: { x?: number; y?: number; z?: number } = {
+//     x: 0,
+//     y: 0,
+//     z: 0,
+//   },
+// ) {
+//   const planeGeometry = new THREE.PlaneGeometry(1000, 1000)
+//   const planeMaterial = new THREE.MeshBasicMaterial({
+//     color: '#88CE02',
+//     side: THREE.DoubleSide,
+//   })
+//   const plane = new THREE.Mesh(planeGeometry, planeMaterial)
+//   plane.rotation.x = -Math.PI / 2
+//   plane.position.set(translate.x || 0, translate.y || 0, translate.z || 0)
+//   scene.add(plane)
+// }
 // creatPlame({ y: 100 })
 // creatPlame({ y: 300 })
 // creatPlame({ y: -100 })
@@ -192,7 +191,7 @@ controls.enableDamping = true
 controls.enableZoom = false
 //#endregion
 //#region <渲染>
-const clock = new THREE.Clock()
+// const clock = new THREE.Clock()
 // 渲染函数
 function render() {
   controls.update()
@@ -283,11 +282,12 @@ window.addEventListener('click', (event) => {
     let intersects = raycaster.intersectObjects(item)
     console.log('intersects ', intersects)
     if (intersects.length === 0) return
-    intersects[0].object.material = new THREE.MeshBasicMaterial({
-      // 粉色
-      // 随机颜色
-      color: getRandomColor(),
-    })
+    ;(intersects[0].object as unknown as any).material =
+      new THREE.MeshBasicMaterial({
+        // 粉色
+        // 随机颜色
+        color: getRandomColor(),
+      })
   })
 
   // intersects.forEach((item) => {
