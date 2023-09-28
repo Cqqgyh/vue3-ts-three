@@ -130,8 +130,8 @@ let meshGroup = [cubeGroup, cylinderGroup, dodecahedronrGroup]
 meshGroup.forEach((item) => {
   gsap.to(item.rotation, {
     x: 0,
-    y: Math.PI,
-    duration: 5,
+    y: Math.PI * 2,
+    duration: 10,
     ease: 'linear',
     // yoyo: true,
     repeat: -1,
