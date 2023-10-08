@@ -50,4 +50,16 @@ export const devRoutes: RouteRecordRaw[] = [
     },
     children: [],
   },
+  {
+    name: 'fullScrollTwo',
+    path: '/fullScrollTwo',
+    component: () => import('@/views/fullScrollTwo/fullScrollTwo.vue'),
+    meta: {
+      title: 'fullScrollTwo',
+      icon: 'HomeFilled',
+      /** 菜单是否全屏 (示例：数据大屏页面) */
+      isFull: true,
+    },
+    children: [],
+  }
 ]
