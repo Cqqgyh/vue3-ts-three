@@ -306,7 +306,7 @@ function getRandomColor() {
 
   return '#' + rr + gg + bb
 }
-function eventListrenderHandler(element: HTMLElement) {
+function eventListenerHandler(element: HTMLElement) {
   // 滚动事件
   element.addEventListener('wheel', (e) => {
     // 页面可视高度
@@ -347,7 +347,7 @@ onMounted(() => {
   // 将webgl渲染的canvas内容添加到body中
   let pageContainer = document.getElementById('page-container') || document.body
   pageContainer?.appendChild(renderer.domElement)
-  eventListrenderHandler(pageContainer)
+  eventListenerHandler(pageContainer)
   render()
 })
 </script>
